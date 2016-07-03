@@ -46,5 +46,8 @@ input_filename=${input##*/}
 output=${input_filename%.*}.gif
 
 # Encode GIF
+echo "Generating palette..."
 ffmpeg -v warning -i $input -vf "fps=$fps,palettegen" -y $palette
+echo "Encoding GIF..."
 ffmpeg -v warning -i $input -i $palette -lavfi "fps=$fps [x]; [x][1:v] paletteuse" -y $output
+echo "Done!"
