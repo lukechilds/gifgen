@@ -45,6 +45,12 @@ done
 # Show help and exit if we have no input
 [[ "$input" = "" ]] || [[ $show_help = true ]] && show_help && exit
 
+# If we're not just showing help check we have ffmpeg
+type ffmpeg >/dev/null 2>&1 || {
+  echo "Error: gifgen requires ffmpeg to be installed"
+  exit 1
+}
+
 # Set output filename if not specified
 input_filename=${input##*/}
 output=${input_filename%.*}.gif
