@@ -20,6 +20,10 @@ while getopts "i:o:f:" opt; do
   esac
 done
 
+# Set output filename if not specified
+input_filename=${input##*/}
+output=${input_filename%.*}.gif
+
 # Encode GIF
 ffmpeg -v warning -i $input -vf "fps=$fps,palettegen" -y $palette
 ffmpeg -v warning -i $input -i $palette -lavfi "fps=$fps [x]; [x][1:v] paletteuse" -y $output
