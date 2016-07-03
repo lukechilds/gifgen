@@ -19,9 +19,10 @@ show_help() {
 pid=$$
 palette="/tmp/gif-palette-$pid.png"
 fps="10"
+verbosity="warning"
 
 # Parse args
-while getopts "hi:o:f:" opt; do
+while getopts "hi:o:f:v" opt; do
   case "$opt" in
     h)
       show_help=true
@@ -35,6 +36,9 @@ while getopts "hi:o:f:" opt; do
     f)
       fps=$OPTARG
       ;;
+    v)
+      verbosity="info"
+      ;;
   esac
 done
 
@@ -47,7 +51,8 @@ output=${input_filename%.*}.gif
 
 # Encode GIF
 echo "Generating palette..."
-ffmpeg -v warning -i $input -vf "fps=$fps,palettegen" -y $palette
+ffmpeg -v $verbosity -i $input -vf "fps=$fps,palettegen" -y $palette
+[[ "$verbosity" = "info" ]] && echo
 echo "Encoding GIF..."
-ffmpeg -v warning -i $input -i $palette -lavfi "fps=$fps [x]; [x][1:v] paletteuse" -y $output
+ffmpeg -v $verbosity -i $input -i $palette -lavfi "fps=$fps [x]; [x][1:v] paletteuse" -y $output
 echo "Done!"
