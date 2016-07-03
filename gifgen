@@ -8,6 +8,7 @@ show_help() {
   echo "  -i   Input file"
   echo "  -o   Output file [input.gif]"
   echo "  -f   Frames per second [10]"
+  echo "  -v   Display verbose output from ffmpeg"
   echo
   echo "Examples:"
   echo "  $ gifgen -i screencap.mp4"
