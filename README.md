@@ -6,6 +6,14 @@ If you've ever tried encoding GIFs with `ffmpeg` there's a good chance your resu
 
 `gifgen` produces much better results by doing a 2-pass encode. The first pass generates a custom colour palette based on all of the pixels from each frame. The second pass encodes the GIF using this palette instead of the default one bundled with `ffmpeg`.
 
+**ffmpeg default:**
+
+![ffmpeg default](gifs/bbb-default.gif)
+
+**gifgen:**
+
+![gifgen](gifs/bbb-gifgen.gif)
+
 ## Usage
 
 ```shell
