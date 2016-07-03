@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
-palette="/tmp/palette.png"
+pid=$$
+palette="/tmp/gif-palette-$pid.png"
 
 filters="fps=15,scale=320:-1:flags=lanczos"
 
