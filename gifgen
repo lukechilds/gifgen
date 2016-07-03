@@ -1,13 +1,31 @@
 #!/bin/bash
 
+# Echo help/usage message
+show_help() {
+  echo "Usage: gifgen [options]"
+  echo
+  echo "Options"
+  echo "  -i   Input file"
+  echo "  -o   Output file [input.gif]"
+  echo "  -f   Frames per second [10]"
+  echo
+  echo "Examples:"
+  echo "  $ gifgen -i screencap.mp4"
+  echo "  $ gifgen -i SCM_1457.mov -o demo.gif"
+  echo "  $ gifgen -i screencp.mp4 -f 15"
+}
+
 # Setup defaults
 pid=$$
 palette="/tmp/gif-palette-$pid.png"
 fps="10"
 
 # Parse args
-while getopts "i:o:f:" opt; do
+while getopts "hi:o:f:" opt; do
   case "$opt" in
+    h)
+      show_help=true
+      ;;
     i)
       input=$OPTARG
       ;;
@@ -19,6 +37,9 @@ while getopts "i:o:f:" opt; do
       ;;
   esac
 done
+
+# Show help and exit if we have no input
+[[ "$input" = "" ]] || [[ $show_help = true ]] && show_help && exit
 
 # Set output filename if not specified
 input_filename=${input##*/}
