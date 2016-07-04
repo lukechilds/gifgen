@@ -53,8 +53,10 @@ type ffmpeg >/dev/null 2>&1 || {
 }
 
 # Set output if not specified
-input_filename=${input##*/}
-output=${input_filename%.*}.gif
+if [[ "$output" = "" ]]; then
+  input_filename=${input##*/}
+  output=${input_filename%.*}.gif
+fi
 
 # Encode GIF
 echo "Generating palette..."
