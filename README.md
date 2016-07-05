@@ -32,6 +32,10 @@ Examples:
   $ gifgen -i screencp.mp4 -f 15
 ```
 
+## Installation
+
+Just clone this repo and either copy/symlink `gifgen` to your PATH or run the script directly with `./gifgen`.
+
 ## Credits
 
 `gifgen` is pretty much just the information from [this blog article](http://blog.pkh.me/p/21-high-quality-gif-with-ffmpeg.html) wrapped up in a shell script. Full credit goes to the original [author](http://ubitux.fr/).
