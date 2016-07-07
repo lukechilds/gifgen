@@ -29,7 +29,7 @@ Options
 Examples:
   $ gifgen -i screencap.mp4
   $ gifgen -i SCM_1457.mov -o demo.gif
-  $ gifgen -i screencp.mp4 -f 15
+  $ gifgen -i screencap.mp4 -f 15
 ```
 
 ## Installation

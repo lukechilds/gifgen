@@ -13,7 +13,7 @@ show_help() {
   echo "Examples:"
   echo "  $ gifgen -i screencap.mp4"
   echo "  $ gifgen -i SCM_1457.mov -o demo.gif"
-  echo "  $ gifgen -i screencp.mp4 -f 15"
+  echo "  $ gifgen -i screencap.mp4 -f 15"
 }
 
 # Setup defaults
