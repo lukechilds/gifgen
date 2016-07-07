@@ -18,9 +18,11 @@ If you've ever tried encoding GIFs with `ffmpeg` there's a good chance your resu
 
 ```shell
 $ gifgen -h
+gifgen 1.0.1
+
 Usage: gifgen [options]
 
-Options
+Options:
   -i   Input file
   -o   Output file [input.gif]
   -f   Frames per second [10]
