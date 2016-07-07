@@ -34,7 +34,16 @@ Examples:
 
 ## Installation
 
-Just clone this repo and either copy/symlink `gifgen` to your PATH or run the script directly with `./gifgen`.
+### macOS
+
+```shell
+brew tap lukechilds/tap
+brew install gifgen
+```
+
+### Linux
+
+Just clone this repo and either copy/symlink `gifgen` to your PATH or run the script directly with `./gifgen`. Requires `ffmpeg` to be installed.
 
 ## Credits
 
