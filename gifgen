@@ -2,6 +2,8 @@
 
 # Echo help/usage message
 show_help() {
+  echo "gifgen 1.0.1"
+  echo
   echo "Usage: gifgen [options]"
   echo
   echo "Options:"
