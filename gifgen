@@ -4,7 +4,7 @@
 show_help() {
   echo "Usage: gifgen [options]"
   echo
-  echo "Options"
+  echo "Options:"
   echo "  -i   Input file"
   echo "  -o   Output file [input.gif]"
   echo "  -f   Frames per second [10]"
