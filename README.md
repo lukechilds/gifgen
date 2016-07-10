@@ -16,22 +16,22 @@ If you've ever tried encoding GIFs with `ffmpeg` there's a good chance your resu
 
 ## Usage
 
-```shell
+```
 $ gifgen -h
-gifgen 1.0.1
+gifgen 1.1.0
 
 Usage: gifgen [options]
 
 Options:
-  -i   Input file
   -o   Output file [input.gif]
   -f   Frames per second [10]
+  -s   Optimize for static background
   -v   Display verbose output from ffmpeg
 
 Examples:
-  $ gifgen -i screencap.mp4
-  $ gifgen -i SCM_1457.mov -o demo.gif
-  $ gifgen -i screencap.mp4 -f 15
+  $ gifgen video.mp4
+  $ gifgen -o demo.gif SCM_1457.mp4
+  $ gifgen -sf 15 screencap.mov
 ```
 
 ## Installation
