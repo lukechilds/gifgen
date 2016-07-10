@@ -10,6 +10,7 @@ show_help() {
   echo "  -i   Input file"
   echo "  -o   Output file [input.gif]"
   echo "  -f   Frames per second [10]"
+  echo "  -s   Optimize for static background"
   echo "  -v   Display verbose output from ffmpeg"
   echo
   echo "Examples:"
@@ -23,9 +24,10 @@ pid=$$
 palette="/tmp/gif-palette-$pid.png"
 fps="10"
 verbosity="warning"
+stats_mode="full"
 
 # Parse args
-while getopts "hi:o:f:v" opt; do
+while getopts "hi:o:f:sv" opt; do
   case "$opt" in
     h)
       show_help=true
@@ -38,6 +40,9 @@ while getopts "hi:o:f:v" opt; do
       ;;
     f)
       fps=$OPTARG
+      ;;
+    s)
+      stats_mode="diff"
       ;;
     v)
       verbosity="info"
@@ -62,7 +67,7 @@ fi
 
 # Encode GIF
 echo "Generating palette..."
-ffmpeg -v $verbosity -i $input -vf "fps=$fps,palettegen" -y $palette
+ffmpeg -v $verbosity -i $input -vf "fps=$fps,palettegen=stats_mode=$stats_mode" -y $palette
 [[ "$verbosity" = "info" ]] && echo
 echo "Encoding GIF..."
 ffmpeg -v $verbosity -i $input -i $palette -lavfi "fps=$fps [x]; [x][1:v] paletteuse" -y $output
