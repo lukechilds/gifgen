@@ -4,7 +4,7 @@
 show_help() {
   echo "gifgen 1.1.0"
   echo
-  echo "Usage: gifgen [options]"
+  echo "Usage: gifgen [options] [input]"
   echo
   echo "Options:"
   echo "  -o   Output file [input.gif]"
