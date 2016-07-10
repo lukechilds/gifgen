@@ -33,9 +33,6 @@ while getopts "hi:o:f:sv" opt; do
     h)
       show_help=true
       ;;
-    i)
-      input=$OPTARG
-      ;;
     o)
       output=$OPTARG
       ;;
@@ -53,8 +50,8 @@ while getopts "hi:o:f:sv" opt; do
 done
 shift $(($OPTIND - 1))
 
-# If -i wasn't set, grab input from end of command
-[[ "$input" = "" ]] && input=$1
+# Grab input file from end of command
+input=$1
 
 # Show help and exit if we have no input
 [[ "$input" = "" ]] || [[ $show_help = true ]] && show_help && exit
