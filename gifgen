@@ -51,6 +51,10 @@ while getopts "hi:o:f:sv" opt; do
       ;;
   esac
 done
+shift $(($OPTIND - 1))
+
+# If -i wasn't set, grab input from end of command
+[[ "$input" = "" ]] && input=$1
 
 # Show help and exit if we have no input
 [[ "$input" = "" ]] || [[ $show_help = true ]] && show_help && exit
