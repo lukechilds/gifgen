@@ -47,7 +47,7 @@ while getopts "hi:o:f:sv" opt; do
       ;;
   esac
 done
-shift $((OPTIND - 1))
+shift $((OPTIND-1))
 
 # Grab input file from end of command
 input=$1
