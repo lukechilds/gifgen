@@ -47,7 +47,7 @@ while getopts "hi:o:f:sv" opt; do
       ;;
   esac
 done
-shift $(($OPTIND - 1))
+shift "$((OPTIND - 1))"
 
 # Grab input file from end of command
 input=$1
@@ -69,8 +69,8 @@ fi
 
 # Encode GIF
 echo "Generating palette..."
-ffmpeg -v $verbosity -i $input -vf "fps=$fps,palettegen=stats_mode=$stats_mode" -y $palette
+ffmpeg -v "$verbosity" -i "$input" -vf "fps=$fps,palettegen=stats_mode=$stats_mode" -y "$palette"
 [[ "$verbosity" = "info" ]] && echo
 echo "Encoding GIF..."
-ffmpeg -v $verbosity -i $input -i $palette -lavfi "fps=$fps [x]; [x][1:v] paletteuse=dither=$dither" -y $output
+ffmpeg -v "$verbosity" -i "$input" -i "$palette" -lavfi "fps=$fps [x]; [x][1:v] paletteuse=dither=$dither" -y "$output"
 echo "Done!"
