@@ -47,6 +47,12 @@ brew install gifgen
 
 Just clone this repo and either copy/symlink `gifgen` to your PATH or run the script directly with `./gifgen`. Requires `ffmpeg` to be installed.
 
+### Windows
+
+```
+¯\_(ツ)_/¯
+```
+
 ## Credits
 
 `gifgen` is pretty much just the information from [this blog article](http://blog.pkh.me/p/21-high-quality-gif-with-ffmpeg.html) wrapped up in a shell script. Full credit goes to the original [author](http://ubitux.fr/).
