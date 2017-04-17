@@ -39,8 +39,7 @@ Examples:
 ### macOS
 
 ```shell
-brew tap lukechilds/tap
-brew install gifgen
+brew install lukechilds/tap/gifgen
 ```
 
 ### Linux
