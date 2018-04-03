@@ -25,6 +25,7 @@ Usage: gifgen [options] [input]
 Options:
   -o   Output file [input.gif]
   -f   Frames per second [10]
+  -w   Width, horizontal resolution [640]
   -s   Optimize for static background
   -v   Display verbose output from ffmpeg
 
@@ -32,6 +33,7 @@ Examples:
   $ gifgen video.mp4
   $ gifgen -o demo.gif SCM_1457.mp4
   $ gifgen -sf 15 screencap.mov
+  $ gifgen -w 700 -s -o my.gif frames/frame_%4d.png
 ```
 
 ## Installation
@@ -39,7 +41,7 @@ Examples:
 ### macOS
 
 ```shell
-brew install lukechilds/tap/gifgen
+brew install machin3io/tap/gifgen
 ```
 
 ### Linux

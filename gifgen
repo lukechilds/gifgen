@@ -2,13 +2,14 @@
 
 # Echo help/usage message
 show_help() {
-  echo "gifgen 1.1.2"
+  echo "gifgen 1.2.0"
   echo
   echo "Usage: gifgen [options] [input]"
   echo
   echo "Options:"
   echo "  -o   Output file [input.gif]"
   echo "  -f   Frames per second [10]"
+  echo "  -w   Width, horizontal resolution [640]"
   echo "  -s   Optimize for static background"
   echo "  -v   Display verbose output from ffmpeg"
   echo
@@ -16,18 +17,20 @@ show_help() {
   echo "  $ gifgen video.mp4"
   echo "  $ gifgen -o demo.gif SCM_1457.mp4"
   echo "  $ gifgen -sf 15 screencap.mov"
+  echo "  $ gifgen -w 700 -s -o my.gif frames/frame_%4d.png"
 }
 
 # Setup defaults
 pid=$$
 palette="/tmp/gif-palette-$pid.png"
 fps="10"
+width="640"
 verbosity="warning"
 stats_mode="full"
 dither="sierra2_4a"
 
 # Parse args
-while getopts "hi:o:f:sv" opt; do
+while getopts "hi:o:f:w:sv" opt; do
   case "$opt" in
     h)
       show_help=true
@@ -37,6 +40,9 @@ while getopts "hi:o:f:sv" opt; do
       ;;
     f)
       fps=$OPTARG
+      ;;
+    w)
+      width=$OPTARG
       ;;
     s)
       stats_mode="diff"
@@ -68,8 +74,8 @@ fi
 
 # Encode GIF
 echo "Generating palette..."
-ffmpeg -v "$verbosity" -i "$input" -vf "fps=$fps,palettegen=stats_mode=$stats_mode" -y "$palette"
+ffmpeg -v "$verbosity" -i "$input" -vf "fps=$fps,scale=$width:-1:flags=lanczos,palettegen=stats_mode=$stats_mode" -y "$palette"
 [[ "$verbosity" = "info" ]] && echo
 echo "Encoding GIF..."
-ffmpeg -v "$verbosity" -i "$input" -i "$palette" -lavfi "fps=$fps [x]; [x][1:v] paletteuse=dither=$dither" -y "$output"
+ffmpeg -v "$verbosity" -i "$input" -i "$palette" -lavfi "fps=$fps,scale=$width:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=$dither" -y "$output"
 echo "Done!"
