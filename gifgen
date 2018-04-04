@@ -17,7 +17,7 @@ show_help() {
   echo "  $ gifgen video.mp4"
   echo "  $ gifgen -o demo.gif SCM_1457.mp4"
   echo "  $ gifgen -sf 15 screencap.mov"
-  echo "  $ gifgen -w 700 -s -o my.gif frames/frame_%4d.png"
+  echo "  $ gifgen -w 700 -o my.gif frames/frame_%4d.png"
 }
 
 # Setup defaults

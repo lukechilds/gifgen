@@ -18,7 +18,7 @@ If you've ever tried encoding GIFs with `ffmpeg` there's a good chance your resu
 
 ```
 $ gifgen -h
-gifgen 1.1.2
+gifgen 1.2.0
 
 Usage: gifgen [options] [input]
 
@@ -33,26 +33,15 @@ Examples:
   $ gifgen video.mp4
   $ gifgen -o demo.gif SCM_1457.mp4
   $ gifgen -sf 15 screencap.mov
-  $ gifgen -w 700 -s -o my.gif frames/frame_%4d.png
+  $ gifgen -w 700 -o my.gif frames/frame_%4d.png
 ```
 
 ## Installation
-
-### macOS
-
-```shell
-brew install machin3io/tap/gifgen
-```
 
 ### Linux
 
 Just clone this repo and either copy/symlink `gifgen` to your PATH or run the script directly with `./gifgen`. Requires `ffmpeg` to be installed.
 
-### Windows
-
-```
-¯\_(ツ)_/¯
-```
 
 ## Credits
 
