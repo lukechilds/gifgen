@@ -18,7 +18,7 @@ If you've ever tried encoding GIFs with `ffmpeg` there's a good chance your resu
 
 ```
 $ gifgen -h
-gifgen 1.1.2
+gifgen 1.1.3
 
 Usage: gifgen [options] [input]
 
@@ -27,11 +27,15 @@ Options:
   -f   Frames per second [10]
   -s   Optimize for static background
   -v   Display verbose output from ffmpeg
+  -w   Scale output with horizontal resolution
+  -c   Cut some seconds from the start of the input
+  -d   Duration in seconds of the resulting gif
 
 Examples:
   $ gifgen video.mp4
   $ gifgen -o demo.gif SCM_1457.mp4
   $ gifgen -sf 15 screencap.mov
+  $ gifgen -sf 15 -w 320 screencap.mov
 ```
 
 ## Installation
