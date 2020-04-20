@@ -28,14 +28,17 @@ Options:
   -s   Optimize for static background
   -v   Display verbose output from ffmpeg
   -w   Scale output with horizontal resolution
-  -c   Cut some seconds from the start of the input
-  -d   Duration in seconds of the resulting gif
+  -c   Cut and discard the beginning of the input video (in seconds)
+  -d   Duration in seconds of the resulting gif, can be combined with cut
 
 Examples:
   $ gifgen video.mp4
   $ gifgen -o demo.gif SCM_1457.mp4
   $ gifgen -sf 15 screencap.mov
   $ gifgen -sf 15 -w 320 screencap.mov
+
+Cut the first 3.5 seconds, make the gif using the next 5.5 seconds
+  $ gifgen -c 3.5 -d 5.5 screencap.mov
 ```
 
 ## Installation

@@ -12,14 +12,17 @@ show_help() {
   echo "  -s   Optimize for static background"
   echo "  -v   Display verbose output from ffmpeg"
   echo "  -w   Scale output with horizontal resolution"
-  echo "  -c   Cut some seconds from the start of the input"
-  echo "  -d   Duration in seconds of the resulting gif"
+  echo "  -c   Cut and discard the beginning of the input video (in seconds)"
+  echo "  -d   Duration in seconds of the resulting gif, can be combined with cut"
   echo
   echo "Examples:"
   echo "  $ gifgen video.mp4"
   echo "  $ gifgen -o demo.gif SCM_1457.mp4"
   echo "  $ gifgen -sf 15 screencap.mov"
   echo "  $ gifgen -sf 15 -w 320 screencap.mov"
+  echo
+  echo "Cut the first 3.5 seconds, make the gif using the next 5.5 seconds"
+  echo "  $ gifgen -c 3.5 -d 5.5 screencap.mov"
 }
 
 # Setup defaults
