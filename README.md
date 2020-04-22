@@ -18,7 +18,7 @@ If you've ever tried encoding GIFs with `ffmpeg` there's a good chance your resu
 
 ```
 $ gifgen -h
-gifgen 1.1.3
+gifgen 1.1.2
 
 Usage: gifgen [options] [input]
 
@@ -28,8 +28,8 @@ Options:
   -s   Optimize for static background
   -v   Display verbose output from ffmpeg
   -w   Scale output with horizontal resolution
-  -c   Cut and discard the beginning of the input video (in seconds)
-  -d   Duration in seconds of the resulting gif, can be combined with cut
+  -b   Begin the clip at a given timestamp (in seconds)
+  -d   Duration in seconds of the resulting gif, can be combined with at
 
 Examples:
   $ gifgen video.mp4
@@ -37,8 +37,9 @@ Examples:
   $ gifgen -sf 15 screencap.mov
   $ gifgen -sf 15 -w 320 screencap.mov
 
-Cut the first 3.5 seconds, make the gif using the next 5.5 seconds
-  $ gifgen -c 3.5 -d 5.5 screencap.mov
+Begin at 3.5 seconds into the video, make the gif using the next 5.5 seconds
+  $ gifgen -b 3.5 -d 5.5 screencap.mov
+
 ```
 
 ## Installation
