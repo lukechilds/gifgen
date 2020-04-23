@@ -27,11 +27,19 @@ Options:
   -f   Frames per second [10]
   -s   Optimize for static background
   -v   Display verbose output from ffmpeg
+  -w   Scale output with horizontal resolution
+  -b   Begin the clip at a given timestamp (in seconds)
+  -d   Duration in seconds of the resulting gif, can be combined with at
 
 Examples:
   $ gifgen video.mp4
   $ gifgen -o demo.gif SCM_1457.mp4
   $ gifgen -sf 15 screencap.mov
+  $ gifgen -sf 15 -w 320 screencap.mov
+
+Begin at 3.5 seconds into the video, make the gif using the next 5.5 seconds
+  $ gifgen -b 3.5 -d 5.5 screencap.mov
+
 ```
 
 ## Installation

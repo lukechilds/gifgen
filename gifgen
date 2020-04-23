@@ -11,11 +11,18 @@ show_help() {
   echo "  -f   Frames per second [10]"
   echo "  -s   Optimize for static background"
   echo "  -v   Display verbose output from ffmpeg"
+  echo "  -w   Scale output with horizontal resolution"
+  echo "  -b   Begin the clip at a given timestamp (in seconds)"
+  echo "  -d   Duration in seconds of the resulting gif, can be combined with at"
   echo
   echo "Examples:"
   echo "  $ gifgen video.mp4"
   echo "  $ gifgen -o demo.gif SCM_1457.mp4"
   echo "  $ gifgen -sf 15 screencap.mov"
+  echo "  $ gifgen -sf 15 -w 320 screencap.mov"
+  echo
+  echo "Begin at 3.5 seconds into the video, make the gif using the next 5.5 seconds"
+  echo "  $ gifgen -b 3.5 -d 5.5 screencap.mov"
 }
 
 # Setup defaults
@@ -25,9 +32,12 @@ fps="10"
 verbosity="warning"
 stats_mode="full"
 dither="sierra2_4a"
+scale=""
+begin=""
+duration=""
 
 # Parse args
-while getopts "hi:o:f:sv" opt; do
+while getopts "hi:o:f:w:b:d:sv" opt; do
   case "$opt" in
     h)
       show_help=true
@@ -41,6 +51,15 @@ while getopts "hi:o:f:sv" opt; do
     s)
       stats_mode="diff"
       dither="none"
+      ;;
+    w)
+      scale=",scale=$OPTARG:-1:flags=lanczos"
+      ;;
+    b)
+      begin="-ss $OPTARG"
+      ;;
+    d)
+      duration="-t $OPTARG"
       ;;
     v)
       verbosity="info"
@@ -68,8 +87,9 @@ fi
 
 # Encode GIF
 echo "Generating palette..."
-ffmpeg -v "$verbosity" -i "$input" -vf "fps=$fps,palettegen=stats_mode=$stats_mode" -y "$palette"
+ffmpeg -v "$verbosity" $begin $duration -i "$input" -vf "fps=$fps$scale,palettegen=stats_mode=$stats_mode" -y "$palette"
 [[ "$verbosity" = "info" ]] && echo
 echo "Encoding GIF..."
-ffmpeg -v "$verbosity" -i "$input" -i "$palette" -lavfi "fps=$fps [x]; [x][1:v] paletteuse=dither=$dither" -y "$output"
+ffmpeg -v "$verbosity" $begin $duration -i "$input" -i "$palette" -lavfi "fps=$fps$scale [x]; [x][1:v] paletteuse=dither=$dither" -y "$output"
 echo "Done!"
+
