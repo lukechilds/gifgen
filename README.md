@@ -18,7 +18,7 @@ If you've ever tried encoding GIFs with `ffmpeg` there's a good chance your resu
 
 ```
 $ gifgen -h
-gifgen 1.1.2
+gifgen 1.2.0
 
 Usage: gifgen [options] [input]
 
