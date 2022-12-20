@@ -23,7 +23,7 @@ show_help() {
   echo "  $ gifgen -sf 15 -w 320 screencap.mov"
   echo
   echo "Begin at 3.5 seconds into the video, make the gif using the next 5.5 seconds"
-  echo "  $ gifgen -b 3.5 -d 5.5 screencap.mov"
+  echo "  $ gifgen -b 3.5 -t 5.5 screencap.mov"
 }
 
 # Setup defaults
