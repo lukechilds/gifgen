@@ -10,10 +10,11 @@ show_help() {
   echo "  -o   Output file [input.gif]"
   echo "  -f   Frames per second [10]"
   echo "  -s   Optimize for static background"
+  echo "  -d   Set dither pattern in ffmpeg"
   echo "  -v   Display verbose output from ffmpeg"
   echo "  -w   Scale output with horizontal resolution"
   echo "  -b   Begin the clip at a given timestamp (in seconds)"
-  echo "  -d   Duration in seconds of the resulting gif, can be combined with at"
+  echo "  -t   Duration in seconds of the resulting gif, can be combined with at"
   echo
   echo "Examples:"
   echo "  $ gifgen video.mp4"
