@@ -56,8 +56,11 @@ Just clone this repo and either copy/symlink `gifgen` to your PATH or run the sc
 
 ### Windows
 
-```
-¯\_(ツ)_/¯
+Requires `WSL` and `ffmpeg` to be installed.
+
+Clone this repo. Open the Linux shell and correct the line endings for the gifgen file for Windows with the following:
+```shell
+sed -i -e 's/\r$//' /PATH/TO/GIFGEN/FILE
 ```
 
 ## Credits
