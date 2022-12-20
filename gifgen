@@ -33,11 +33,12 @@ verbosity="warning"
 stats_mode="full"
 dither="sierra2_4a"
 scale=""
+scale_num=""
 begin=""
 duration=""
 
 # Parse args
-while getopts "hi:o:f:w:b:d:sv" opt; do
+while getopts "hi:o:f:w:b:t:d:sv" opt; do
   case "$opt" in
     h)
       show_help=true
@@ -50,15 +51,17 @@ while getopts "hi:o:f:w:b:d:sv" opt; do
       ;;
     s)
       stats_mode="diff"
-      dither="none"
+      ;;
+    d)
+      dither=$OPTARG
       ;;
     w)
-      scale=",scale=$OPTARG:-1:flags=lanczos"
+      scale_num=$OPTARG
       ;;
     b)
       begin="-ss $OPTARG"
       ;;
-    d)
+    t)
       duration="-t $OPTARG"
       ;;
     v)
@@ -69,6 +72,8 @@ done
 shift "$((OPTIND-1))"
 # Grab input file from end of command
 input=$1
+
+scale=",scale=$scale_num:-1:flags=lanczos"
 
 # Show help and exit if we have no input
 [[ "$input" = "" ]] || [[ $show_help = true ]] && show_help && exit
@@ -81,8 +86,12 @@ type ffmpeg >/dev/null 2>&1 || {
 
 # Set output if not specified
 if [[ "$output" = "" ]]; then
-  input_filename=${input##*/}
-  output=${input_filename%.*}.gif
+  input_filename=${input##*/}$
+  output=${input_filename%.*}
+  if [[ "$scale_num" != "" ]]; then
+    output=${output%.*}_$scale_num
+  fi
+  output=${output%.*}.gif
 fi
 
 # Encode GIF
